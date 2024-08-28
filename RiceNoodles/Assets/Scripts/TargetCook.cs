@@ -9,7 +9,7 @@ public class TargetCook : MonoBehaviour
     public DragIcon dragIcon;
     public GameObject target;
     private RaycastHit2D ray;
-    public float cookingTime = 60f;
+    public float cookingTime = 10f;
     private float currentTime = 0f;
     private int status = 0; // 0: Bad, 1: Mid, 2: Good
     public Sprite[] utensilSprites;
@@ -25,10 +25,20 @@ public class TargetCook : MonoBehaviour
     }
     IEnumerator cooking() {
         while (currentTime <= cookingTime) {
-            // change sprite, change status
+            if (currentTime >= cookingTime * (1/5f) && currentTime <= cookingTime * (2/5f)) {
+                status = 1;
+            }
+            else if (currentTime >= cookingTime * (2/5f) && currentTime <= cookingTime * (3/5f)) {
+                status = 2;
+                spriteRenderer.sprite = utensilSprites[2];
+            }
+            else if (currentTime >= cookingTime * (3/5f)) {
+                status = 1;
+            }
+            currentTime += Time.deltaTime;
             yield return null;
         }
-        spriteRenderer.sprite = utensilSprites[1];
+        spriteRenderer.sprite = utensilSprites[3];
         status = 0;
     }
     void OnMouseDown() {
@@ -48,9 +58,11 @@ public class TargetCook : MonoBehaviour
         ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f);
         if (ray) {
             if (ray.transform.name == target.transform.name) {
-                Debug.Log("target");
                 spriteRenderer.sprite = utensilSprites[0];
                 status = 0;
+                TargetMix targetMix = target.transform.GetComponent<TargetMix>();
+                int num = int.Parse(dragIcon.GetComponent<SpriteRenderer>().sprite.name[4].ToString());
+                targetMix.startMixing(num + 1);
                 TargetMix.score += status;
             }
         }
