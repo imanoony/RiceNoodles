@@ -549,9 +549,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b227cbf4f41c947b02b4d2073fea5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: a25d778c62b577146974f249313e516a, type: 3}
+  - {fileID: 21300000, guid: a4ca14b183ee481429a07868c1a579c8, type: 3}
   dragIconSprite: {fileID: 21300000, guid: 34f831fbe0a4ac345924ba23e447d9d7, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1926315893}
+  unlocked: 1
 --- !u!60 &412575575
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1020,9 +1024,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b227cbf4f41c947b02b4d2073fea5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: a25d778c62b577146974f249313e516a, type: 3}
+  - {fileID: 21300000, guid: 5af735b23480aab41af367d820ab07b5, type: 3}
   dragIconSprite: {fileID: 21300000, guid: d5554aca9a41b884b84b64694bc2d0a6, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1947950690}
+  unlocked: 1
 --- !u!60 &834340036
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1173,9 +1181,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b227cbf4f41c947b02b4d2073fea5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 224b439d067f6f04292f3d11bfac40d0, type: 3}
+  - {fileID: 21300000, guid: 3ef6f2c4c19ba7042a393f47c70c113a, type: 3}
   dragIconSprite: {fileID: 21300000, guid: 986819c0340360048b485a3e7d120173, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1179051113}
+  unlocked: 1
 --- !u!60 &858916861
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1694,9 +1706,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b227cbf4f41c947b02b4d2073fea5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: a25d778c62b577146974f249313e516a, type: 3}
+  - {fileID: 21300000, guid: 646753847f9bebf44bdf340e40b543fa, type: 3}
   dragIconSprite: {fileID: 21300000, guid: 51457ca65a4f70d45990393fc9e2c5f3, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 84908324}
+  unlocked: 1
 --- !u!60 &1207439140
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2329,9 +2345,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b227cbf4f41c947b02b4d2073fea5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 224b439d067f6f04292f3d11bfac40d0, type: 3}
+  - {fileID: 21300000, guid: 75af4e9f0808f4f4eb9396c2622e4797, type: 3}
   dragIconSprite: {fileID: 21300000, guid: e257eb581a17cdb49839ec1feccdbc3e, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1179051113}
+  unlocked: 1
 --- !u!60 &1697349374
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2564,9 +2584,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b227cbf4f41c947b02b4d2073fea5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: a25d778c62b577146974f249313e516a, type: 3}
+  - {fileID: 21300000, guid: 5f0979b49026b614985b15187e05283e, type: 3}
   dragIconSprite: {fileID: 21300000, guid: 85695d2dbe9c4b04fbda89f45a9bb57e, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1179051113}
+  unlocked: 1
 --- !u!60 &1849110972
 PolygonCollider2D:
   m_ObjectHideFlags: 0
