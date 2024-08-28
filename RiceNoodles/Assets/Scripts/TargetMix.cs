@@ -7,7 +7,7 @@ public class TargetMix : MonoBehaviour
 {
     public static int score;
     void Awake() { score = 0; }
-    public void startMixing() {
-        Debug.Log("Mix");
+    public void startMixing(int num) {
+        gameObject.transform.GetChild(num).gameObject.SetActive(true);
     }
 }

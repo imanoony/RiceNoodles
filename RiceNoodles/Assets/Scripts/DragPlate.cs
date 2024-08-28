@@ -23,14 +23,14 @@ public class DragPlate : MonoBehaviour
         ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f);
         if (ray) {
             if (ray.transform.name == target.transform.name) {
-                Debug.Log("target");
                 if (target.transform.tag == "Cook") {
                     TargetCook targetCook = target.transform.GetComponent<TargetCook>();
                     targetCook.startCooking();
                 }
                 else {
                     TargetMix targetMix = target.transform.GetComponent<TargetMix>();
-                    targetMix.startMixing();
+                    int num = int.Parse(dragIcon.GetComponent<SpriteRenderer>().sprite.name[4].ToString());
+                    targetMix.startMixing(num + 1);
                 }
             }
         }
