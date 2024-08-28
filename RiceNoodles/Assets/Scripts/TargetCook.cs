@@ -25,7 +25,16 @@ public class TargetCook : MonoBehaviour
     }
     IEnumerator cooking() {
         while (currentTime <= cookingTime) {
-            // change sprite, change status
+            if (currentTime >= cookingTime * (1/5f) && currentTime <= cookingTime * (2/5f)) {
+                status = 1;
+            }
+            else if (currentTime >= cookingTime * (2/5f) && currentTime <= cookingTime * (3/5f)) {
+                status = 2;
+                spriteRenderer.sprite = utensilSprites[2];
+            }
+            else if (currentTime >= cookingTime * (3/5f)) {
+                status = 1;
+            }
             currentTime += Time.deltaTime;
             yield return null;
         }
