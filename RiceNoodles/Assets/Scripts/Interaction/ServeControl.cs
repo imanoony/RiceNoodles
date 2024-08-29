@@ -17,7 +17,7 @@ public class ServeControl : MonoBehaviour
         currentTime = 0f;
         currentOrderSpeed = orderSpeed;
         newOrder();
-        plates[currentStage - 2].unlockPlate();
+        //plates[currentStage - 2].unlockPlate();
         MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
     }
     private Dictionary<int, String> dicStr = new Dictionary<int, String>(){
@@ -32,6 +32,7 @@ public class ServeControl : MonoBehaviour
     private int currentStage;
     public DragPlate[] plates;
     void Update() {
+        if (UIManager.CurrentState != "InGame") return;
         if (StageManager.CurrentStage != currentStage) {
             currentStage = StageManager.CurrentStage;
             currentTime = 0f;

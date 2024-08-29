@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas SettingsCanvas;
     [SerializeField] private Canvas TimeCanvas;
     [SerializeField] private Canvas InfoCanvas;
+    [SerializeField] private Canvas titleCanvas;
 
     [SerializeField] private Sprite[] ClockSprites;
 
@@ -52,7 +53,7 @@ public class UIManager : MonoBehaviour
         enchantButton.onClick.AddListener(EnchantButtonClick);
 
         clockImage = TimeCanvas.transform.Find("Clock").GetComponent<Image>();
-        targetFrame = InfoCanvas.transform.Find("Target/Target Frame").GetComponent<Image>();
+        //targetFrame = InfoCanvas.transform.Find("Target/Target Frame").GetComponent<Image>();
         blackScreen = InfoCanvas.transform.Find("Black Screen").GetComponent<Image>();
 
         MoneyCanvas.gameObject.SetActive(false);
@@ -61,11 +62,13 @@ public class UIManager : MonoBehaviour
         EnchantCanvas.gameObject.SetActive(false);
         SettingsCanvas.gameObject.SetActive(false);
         TimeCanvas.gameObject.SetActive(false);
+
+        targetText.gameObject.SetActive(false);
+        dayInfoText.gameObject.SetActive(false);
     }
 
     private void Start(){
-        currentState = "InGame";
-        ShowInfoUI();
+        currentState = "Title";
     }
 
 
@@ -92,7 +95,22 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        if (Input.anyKeyDown) {
+            if (currentState == "Title") {
+                StartCoroutine(closeTitleTransition());
+            }
+        }
+
         switch(currentState){
+            case "Title":
+                MoneyCanvas.gameObject.SetActive(true);
+                todayResultCanvas.gameObject.SetActive(false);
+                ButtonCanvas.gameObject.SetActive(true);
+                EnchantCanvas.gameObject.SetActive(false);
+                SettingsCanvas.gameObject.SetActive(false);
+                TimeCanvas.gameObject.SetActive(true);
+                InfoCanvas.gameObject.SetActive(true);
+                break;
             case "InGame":
                 MoneyCanvas.gameObject.SetActive(true);
                 todayResultCanvas.gameObject.SetActive(false);
@@ -172,7 +190,8 @@ public class UIManager : MonoBehaviour
             currentState = "InGame";
         }
         else{
-            // 메인 화면으로
+            StageManager.ResetStage();
+            StartCoroutine(openTitleTransition());
         }
     }
 
@@ -181,16 +200,17 @@ public class UIManager : MonoBehaviour
     }
     
     private IEnumerator ShowInfoCoroutine(){
-        targetFrame.gameObject.SetActive(false);
+        //targetFrame.gameObject.SetActive(false);
         targetText.rectTransform.anchoredPosition = new Vector3(0f, -100f, 0f);
         targetText.rectTransform.localScale = new Vector3(2f, 2f, 2f);
         targetText.color = Color.white;
+        dayInfoText.color = Color.white;
         dayInfoText.rectTransform.anchoredPosition = new Vector3(0f, 100f, 0f);
         dayInfoText.fontSize = 70;
         targetText.text = "목표 금액: " + MoneyManager.TargetMoneyList[StageManager.CurrentStage].ToString() + "$";
         dayInfoText.text = "Day " + StageManager.CurrentStage;
         blackScreen.gameObject.SetActive(true);
-
+        targetText.gameObject.SetActive(true);
         dayInfoText.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(2f);
@@ -207,17 +227,20 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        SetTextAlpha(dayInfoText, 1f);
-        SetTextAlpha(targetText, 1f);
+        //SetTextAlpha(dayInfoText, 1f);
+        //SetTextAlpha(targetText, 1f);
 
         blackScreen.gameObject.SetActive(false);
-        targetFrame.gameObject.SetActive(true);
-        targetText.rectTransform.anchoredPosition = new Vector3(-300f, -225f, 0f);
-        targetFrame.rectTransform.anchoredPosition = targetText.rectTransform.anchoredPosition;
-        targetText.color = Color.black;
-        targetText.rectTransform.localScale = new Vector3(1f, 1f, 1f);
-        dayInfoText.rectTransform.anchoredPosition = new Vector3(150f, -285f, 0f);
-        dayInfoText.fontSize = 36;
+        targetText.gameObject.SetActive(false);
+        dayInfoText.gameObject.SetActive(false);
+
+        //targetFrame.gameObject.SetActive(true);
+        //targetText.rectTransform.anchoredPosition = new Vector3(-300f, -225f, 0f);
+        //targetFrame.rectTransform.anchoredPosition = targetText.rectTransform.anchoredPosition;
+        //targetText.color = Color.black;
+        //targetText.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+        //dayInfoText.rectTransform.anchoredPosition = new Vector3(150f, -285f, 0f);
+        //dayInfoText.fontSize = 36;
 
     }
 
@@ -241,5 +264,32 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
-
+    private float openY = 0f, closeY = 680f;
+    IEnumerator openTitleTransition() {
+        currentState = "Title";
+        RectTransform rect = titleCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        while (rect.anchoredPosition.y >= openY) {
+            float y = rect.anchoredPosition.y;
+            y -= Time.deltaTime * 550f;
+            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, y);
+            yield return null;
+        }
+        titleCanvas.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, openY);
+        yield break;
+    }
+    IEnumerator closeTitleTransition() {
+        titleCanvas.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+        RectTransform rect = titleCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+        while (rect.anchoredPosition.y <= closeY) {
+            float y = rect.anchoredPosition.y;
+            y += Time.deltaTime * 550f;
+            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, y);
+            yield return null;
+        }
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, closeY);
+        ShowInfoUI();
+        currentState = "InGame";
+        yield break;
+    }
 }
