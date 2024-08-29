@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas MoneyCanvas;
     [SerializeField] private Canvas ButtonCanvas;
     [SerializeField] private Canvas EnchantCanvas;
-    [SerializeField] private Canvas SettingsCanvas;
     [SerializeField] private Canvas TimeCanvas;
     [SerializeField] private Canvas InfoCanvas;
     [SerializeField] private Canvas titleCanvas;
@@ -26,8 +25,6 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI targetText;
     private TextMeshProUGUI targetMoneyText;
     private TextMeshProUGUI dayText;
-
-    private Button settingButton;
     private Button enchantButton;
 
     private Image clockImage;
@@ -49,9 +46,7 @@ public class UIManager : MonoBehaviour
         targetMoneyText = EnchantCanvas.transform.Find("Target Money").GetComponent<TextMeshProUGUI>();
         dayText = EnchantCanvas.transform.Find("Day").GetComponent<TextMeshProUGUI>();
 
-        settingButton = ButtonCanvas.transform.Find("Settings").GetComponent<Button>();
         enchantButton = ButtonCanvas.transform.Find("Enchant").GetComponent<Button>();
-        settingButton.onClick.AddListener(SettingsButtonClick);
         enchantButton.onClick.AddListener(EnchantButtonClick);
 
         clockImage = TimeCanvas.transform.Find("Clock").GetComponent<Image>();
@@ -62,7 +57,6 @@ public class UIManager : MonoBehaviour
         todayResultCanvas.gameObject.SetActive(false);
         ButtonCanvas.gameObject.SetActive(false);
         EnchantCanvas.gameObject.SetActive(false);
-        SettingsCanvas.gameObject.SetActive(false);
         TimeCanvas.gameObject.SetActive(false);
 
         targetText.gameObject.SetActive(false);
@@ -76,16 +70,6 @@ public class UIManager : MonoBehaviour
         moneyText.text = MoneyManager.CurrentMoney.ToString() + "$";
         targetMoneyText.text = MoneyManager.TargetMoney.ToString() + "$";
         dayText.text = "Day " + StageManager.CurrentStage;
-
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(currentState == "Settings"){
-                currentState = previousState;
-                Time.timeScale = 1f;
-            }
-            else if(currentState != "TodayResult"){
-                SettingsButtonClick();
-            }
-        }
 
         if(Input.GetKeyDown(KeyCode.E)){
             if(currentState == "Enchant"){
@@ -109,7 +93,6 @@ public class UIManager : MonoBehaviour
                 todayResultCanvas.gameObject.SetActive(false);
                 ButtonCanvas.gameObject.SetActive(true);
                 EnchantCanvas.gameObject.SetActive(false);
-                SettingsCanvas.gameObject.SetActive(false);
                 TimeCanvas.gameObject.SetActive(true);
                 InfoCanvas.gameObject.SetActive(true);
                 break;
@@ -118,7 +101,6 @@ public class UIManager : MonoBehaviour
                 todayResultCanvas.gameObject.SetActive(false);
                 ButtonCanvas.gameObject.SetActive(true);
                 EnchantCanvas.gameObject.SetActive(false);
-                SettingsCanvas.gameObject.SetActive(false);
                 TimeCanvas.gameObject.SetActive(true);
                 InfoCanvas.gameObject.SetActive(true);
                 //Debug.Log(TimeManager.CurrentHour);
@@ -129,16 +111,6 @@ public class UIManager : MonoBehaviour
                 todayResultCanvas.gameObject.SetActive(true);
                 ButtonCanvas.gameObject.SetActive(false);
                 EnchantCanvas.gameObject.SetActive(false);
-                SettingsCanvas.gameObject.SetActive(false);
-                TimeCanvas.gameObject.SetActive(false);
-                InfoCanvas.gameObject.SetActive(false);
-                break;
-            case "Settings":
-                MoneyCanvas.gameObject.SetActive(false);
-                todayResultCanvas.gameObject.SetActive(false);
-                ButtonCanvas.gameObject.SetActive(false);
-                EnchantCanvas.gameObject.SetActive(false);
-                SettingsCanvas.gameObject.SetActive(true);
                 TimeCanvas.gameObject.SetActive(false);
                 InfoCanvas.gameObject.SetActive(false);
                 break;
@@ -147,7 +119,6 @@ public class UIManager : MonoBehaviour
                 todayResultCanvas.gameObject.SetActive(false);
                 ButtonCanvas.gameObject.SetActive(false);
                 EnchantCanvas.gameObject.SetActive(true);
-                SettingsCanvas.gameObject.SetActive(false);
                 TimeCanvas.gameObject.SetActive(false);
                 InfoCanvas.gameObject.SetActive(false);
                 break;
