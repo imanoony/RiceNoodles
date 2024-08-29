@@ -64,6 +64,7 @@ public class EnchantManager : MonoBehaviour
 
     private static Dictionary<string, int> enchantLevel;
     public static int calculateEnchant(int receiptType) {
+        if (receiptType == -1) return 0;
         int result = 0;
         result += EnchantManager.enchantLevel["Noodle"];
         result += EnchantManager.enchantLevel["Gravy"];

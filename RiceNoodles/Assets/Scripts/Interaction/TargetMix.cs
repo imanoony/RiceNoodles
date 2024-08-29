@@ -14,6 +14,7 @@ public class TargetMix : MonoBehaviour
         if (num == 5) result += 2;
         if (num == 6) result += 4;
     }
+    public void resetMixing() { result = -1; }
     public int lastCheck() {
         if (!defaultCheck()) result = -1;
         else { result += 1; }

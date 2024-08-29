@@ -25,7 +25,7 @@ public class DragBowl : MonoBehaviour
         LayerMask.GetMask("Default"));
         if (ray) {
             if (ray.transform.name == target[0].transform.name || ray.transform.name == target[1].transform.name) {
-                // Throw away
+                serveControl.resetResult();
                 for (int i = 1; i <= 6; i++) { gameObject.transform.GetChild(i).gameObject.SetActive(false); }
                 TargetMix.score = 0;
             }

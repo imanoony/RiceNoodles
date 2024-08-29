@@ -62,13 +62,15 @@ public class ServeControl : MonoBehaviour
         for (int i = 0; i < 5; i++) {
             if (orders[i] == result) {
                 receipts[i].closeReceipt();
-                MoneyManager.AddMoney(50 * (TargetMix.score + 1) * (result / 3 + 1) * EnchantManager.calculateEnchant(orders[i]) / 10);
-                audio.Play();
+                int money = 50 * (TargetMix.score + 1) * (result / 3 + 1) * EnchantManager.calculateEnchant(orders[i]) / 10;
+                if (money > 0) { audio.Play(); }
+                MoneyManager.AddMoney(money);
                 TargetMix.score = 0;
                 return;
             }
         }
     }
+    public void resetResult() { targetMix.resetMixing(); }
     private void newOrder() {
         for (int i = 0; i < 5; i++) {
             if (orders[i] == -1) {
