@@ -59,7 +59,7 @@ public class TargetCook : MonoBehaviour
     void OnMouseUp() {
         if (UIManager.CurrentState != "InGame") { return; }
         if (!isCooking) { return; }
-        ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f);
+        ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f, LayerMask.GetMask("Bowl"));
         if (ray) {
             if (ray.transform.name == target.transform.name) {
                 TargetMix.score += status;

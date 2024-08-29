@@ -32,7 +32,6 @@ public class ServeControl : MonoBehaviour
     private int currentStage;
     public DragPlate[] plates;
     void Update() {
-        if (UIManager.CurrentState != "InGame") return;
         if (StageManager.CurrentStage != currentStage || StageManager.Reset) {
             StageManager.Reset = false;
             currentStage = StageManager.CurrentStage;
@@ -40,9 +39,11 @@ public class ServeControl : MonoBehaviour
             currentOrderSpeed = orderSpeed - orderAccel * (StageManager.CurrentStage - 1);
             TargetMix.score = 0;
             resetServe();
-            plates[currentStage - 2].unlockPlate();
+            if (currentStage > 1) plates[currentStage - 2].unlockPlate();
             MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
+            newOrder();
         }
+        if (UIManager.CurrentState != "InGame") return;
         if (currentTime >= currentOrderSpeed + UnityEngine.Random.Range(0.0f, 5.0f)) {
             newOrder();
             currentTime = 0f;
