@@ -20,17 +20,20 @@ public class DragPlate : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
     }
     void OnMouseDown() {
+        if (UIManager.CurrentState != "InGame") { return; }
         if (!unlocked) { return; }
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragIcon.moveIcon(newPosition.x, newPosition.y);
         dragIcon.changeIcon(dragIconSprite);
     }
     void OnMouseDrag() {
+        if (UIManager.CurrentState != "InGame") { return; }
         if (!unlocked) { return; }
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragIcon.moveIcon(newPosition.x, newPosition.y);
     }
     void OnMouseUp() {
+        if (UIManager.CurrentState != "InGame") { return; }
         if (!unlocked) { return; }
         ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f);
         if (ray) {

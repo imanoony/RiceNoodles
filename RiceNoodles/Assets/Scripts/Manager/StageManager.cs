@@ -25,6 +25,7 @@ public class StageManager : MonoBehaviour
 
     public static void NextStage(){
         currentStage++;
+        MoneyManager.ResetMoney();
         MoneyManager.ResetToday();
         UpdateAvailableTopping();
     }

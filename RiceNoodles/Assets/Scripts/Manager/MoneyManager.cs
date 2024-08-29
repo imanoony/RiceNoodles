@@ -33,6 +33,7 @@ public class MoneyManager : MonoBehaviour
 
     public static void AddMoney(int money){
         currentMoney += money;
+        AddTodaySales(money);
     }
     public static void SpendMoney(int money){
         currentMoney -= money;

@@ -59,7 +59,16 @@ public class EnchantManager : MonoBehaviour
     };
 
     private static Dictionary<string, int> enchantLevel;
-
+    public static int calculateEnchant() {
+        int result = 0;
+        result += EnchantManager.enchantLevel["Noodle"];
+        result += EnchantManager.enchantLevel["Gravy"];
+        result += EnchantManager.enchantLevel["Beef"];
+        result += EnchantManager.enchantLevel["Sukju"];
+        result += EnchantManager.enchantLevel["Lime"];
+        result += EnchantManager.enchantLevel["Gosu"];
+        return result;
+    }
     public void Awake(){
         DontDestroyOnLoad(gameObject);
 

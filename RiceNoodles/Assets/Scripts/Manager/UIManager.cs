@@ -143,9 +143,13 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
+        Time.timeScale = 0f;
+
         while(!Input.GetKeyDown(KeyCode.Escape)){
             yield return null;
         }
+
+        Time.timeScale = 1f;
 
         if(successDay){
             StageManager.NextStage();

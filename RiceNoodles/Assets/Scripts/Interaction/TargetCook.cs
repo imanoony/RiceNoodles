@@ -43,6 +43,7 @@ public class TargetCook : MonoBehaviour
         currentTime = 0f;
     }
     void OnMouseDown() {
+        if (UIManager.CurrentState != "InGame") { return; }
         if (!isCooking) { return; }
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragIcon.moveIcon(newPosition.x, newPosition.y);
@@ -50,11 +51,13 @@ public class TargetCook : MonoBehaviour
         StopAllCoroutines();
     }
     void OnMouseDrag() {
+        if (UIManager.CurrentState != "InGame") { return; }
         if (!isCooking) { return; }
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragIcon.moveIcon(newPosition.x, newPosition.y);
     }
     void OnMouseUp() {
+        if (UIManager.CurrentState != "InGame") { return; }
         if (!isCooking) { return; }
         ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f);
         if (ray) {

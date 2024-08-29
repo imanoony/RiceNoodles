@@ -17,6 +17,8 @@ public class ServeControl : MonoBehaviour
         currentTime = 0f;
         currentOrderSpeed = orderSpeed;
         newOrder();
+        plates[currentStage - 2].unlockPlate();
+        MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
     }
     private Dictionary<int, String> dicStr = new Dictionary<int, String>(){
         {0, "기본"}, {1, "숙주"}, {2, "라임"}, {3, "숙주\n라임"},
@@ -28,6 +30,7 @@ public class ServeControl : MonoBehaviour
     };
     private float currentTime, currentOrderSpeed;
     private int currentStage;
+    public DragPlate[] plates;
     void Update() {
         if (StageManager.CurrentStage != currentStage) {
             currentStage = StageManager.CurrentStage;
@@ -35,6 +38,8 @@ public class ServeControl : MonoBehaviour
             currentOrderSpeed = orderSpeed - orderAccel * (StageManager.CurrentStage - 1);
             TargetMix.score = 0;
             resetServe();
+            plates[currentStage - 2].unlockPlate();
+            MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
         }
         if (currentTime >= currentOrderSpeed + UnityEngine.Random.Range(0.0f, 5.0f)) {
             newOrder();
@@ -44,12 +49,10 @@ public class ServeControl : MonoBehaviour
     }
     public void checkResult() {
         int result = targetMix.lastCheck();
-        Debug.Log("result: " + result);
         for (int i = 0; i < 5; i++) {
             if (orders[i] == result) {
                 receipts[i].closeReceipt();
-                MoneyManager.AddMoney(50 * (TargetMix.score + 1) * (result / 3 + 1));
-                Debug.Log("score: " + TargetMix.score + ", result: " + result + ", Money: " + MoneyManager.CurrentMoney);
+                MoneyManager.AddMoney(50 * (TargetMix.score + 1) * (result / 3 + 1) * EnchantManager.calculateEnchant() / 10);
                 TargetMix.score = 0;
                 return;
             }
@@ -79,6 +82,9 @@ public class ServeControl : MonoBehaviour
         }
     }
     public void resetServe() {
-        for (int i = 0; i < 5; i++) orders[i] = -1;
+        for (int i = 0; i < 5; i++) {
+            orders[i] = -1;
+            receipts[i].closeReceipt();
+        }
     }
 }

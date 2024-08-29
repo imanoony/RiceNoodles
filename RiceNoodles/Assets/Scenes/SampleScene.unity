@@ -2113,7 +2113,7 @@ MonoBehaviour:
   dragIconSprite: {fileID: 21300000, guid: 986819c0340360048b485a3e7d120173, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1179051113}
-  unlocked: 1
+  unlocked: 0
 --- !u!60 &858916861
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3472,6 +3472,10 @@ MonoBehaviour:
   - {fileID: 1219053938}
   - {fileID: 630852178}
   - {fileID: 445577958}
+  plates:
+  - {fileID: 1849110971}
+  - {fileID: 1697349373}
+  - {fileID: 858916860}
 --- !u!1001 &1575251679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4366,7 +4370,7 @@ MonoBehaviour:
   dragIconSprite: {fileID: 21300000, guid: e257eb581a17cdb49839ec1feccdbc3e, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1179051113}
-  unlocked: 1
+  unlocked: 0
 --- !u!60 &1697349374
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4806,7 +4810,7 @@ MonoBehaviour:
   dragIconSprite: {fileID: 21300000, guid: 85695d2dbe9c4b04fbda89f45a9bb57e, type: 3}
   dragIcon: {fileID: 533949550}
   target: {fileID: 1179051113}
-  unlocked: 1
+  unlocked: 0
 --- !u!60 &1849110972
 PolygonCollider2D:
   m_ObjectHideFlags: 0
