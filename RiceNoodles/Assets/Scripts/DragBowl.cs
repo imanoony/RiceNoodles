@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragBowl : MonoBehaviour
 {
     public GameObject[] target;
+    public ServeControl serveControl;
     private RaycastHit2D ray;
     void OnMouseDown() {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -26,7 +27,7 @@ public class DragBowl : MonoBehaviour
                 TargetMix.score = 0;
             }
             else if (ray.transform.name == target[2].transform.name) {
-                // Serve
+                serveControl.checkResult();
                 for (int i = 1; i <= 6; i++) { gameObject.transform.GetChild(i).gameObject.SetActive(false); }
                 TargetMix.score = 0;
             }

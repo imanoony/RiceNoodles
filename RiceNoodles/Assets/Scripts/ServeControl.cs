@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ServeControl : MonoBehaviour
 {
+    public TargetMix targetMix;
     public float orderSpeed;
     public float orderAccel;
     public ServeReceipt[] receipts;
@@ -22,6 +23,15 @@ public class ServeControl : MonoBehaviour
     };
     void Update() { // for test
         if (Input.GetKeyDown(KeyCode.A)) { newOrder(); }
+    }
+    public void checkResult() {
+        int result = targetMix.lastCheck();
+        for (int i = 0; i < 5; i++) {
+            if (orders[i] == result) {
+                receipts[i].closeReceipt();
+                return;
+            }
+        }
     }
     private void newOrder() {
         for (int i = 0; i < 5; i++) {

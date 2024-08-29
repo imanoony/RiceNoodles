@@ -2069,6 +2069,7 @@ MonoBehaviour:
   - {fileID: 1596234187}
   - {fileID: 1626884602}
   - {fileID: 1635702274}
+  serveControl: {fileID: 1513668037}
 --- !u!60 &1179051116
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2142,6 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ad2335b55816d488204953b2d0ae56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  result: 0
 --- !u!1 &1207439136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +2865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a79a0baa7b223441ba6494060402f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetMix: {fileID: 1179051117}
   orderSpeed: 0
   orderAccel: 0
   receipts:
