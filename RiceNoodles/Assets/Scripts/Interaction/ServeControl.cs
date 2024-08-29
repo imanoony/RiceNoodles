@@ -11,6 +11,7 @@ public class ServeControl : MonoBehaviour
     public float orderAccel;
     public ServeReceipt[] receipts;
     public static List<int> orders;
+    private AudioSource audio;
     void Start() {
         orders = new List<int>(5) { -1, -1, -1, -1, -1 };
         currentStage = StageManager.CurrentStage;
@@ -19,6 +20,7 @@ public class ServeControl : MonoBehaviour
         newOrder();
         //plates[currentStage - 2].unlockPlate();
         MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
+        audio = gameObject.GetComponent<AudioSource>();
     }
     private Dictionary<int, String> dicStr = new Dictionary<int, String>(){
         {0, "기본"}, {1, "숙주"}, {2, "라임"}, {3, "숙주\n라임"},
@@ -31,6 +33,10 @@ public class ServeControl : MonoBehaviour
     private float currentTime, currentOrderSpeed;
     private int currentStage;
     public DragPlate[] plates;
+    public AudioSource audioSource;
+    private void pitch() {
+        audioSource.pitch = (float)(1f + (0.25 * (currentStage - 1)));
+    }
     void Update() {
         if (StageManager.CurrentStage != currentStage || StageManager.Reset) {
             StageManager.Reset = false;
@@ -42,6 +48,7 @@ public class ServeControl : MonoBehaviour
             if (currentStage > 1) plates[currentStage - 2].unlockPlate();
             MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
             newOrder();
+            pitch();
         }
         if (UIManager.CurrentState != "InGame") return;
         if (currentTime >= currentOrderSpeed + UnityEngine.Random.Range(0.0f, 5.0f)) {
@@ -56,6 +63,7 @@ public class ServeControl : MonoBehaviour
             if (orders[i] == result) {
                 receipts[i].closeReceipt();
                 MoneyManager.AddMoney(50 * (TargetMix.score + 1) * (result / 3 + 1) * EnchantManager.calculateEnchant(orders[i]) / 10);
+                audio.Play();
                 TargetMix.score = 0;
                 return;
             }

@@ -39,8 +39,6 @@ public class UIManager : MonoBehaviour
     public static string CurrentState => currentState;
 
     private bool successDay;
-
-
     private void Awake(){
         DontDestroyOnLoad(gameObject);
 
@@ -74,8 +72,6 @@ public class UIManager : MonoBehaviour
     private void Start(){
         currentState = "Title";
     }
-
-
     private void Update(){
         moneyText.text = MoneyManager.CurrentMoney.ToString() + "$";
         targetMoneyText.text = MoneyManager.TargetMoney.ToString() + "$";
@@ -273,6 +269,7 @@ public class UIManager : MonoBehaviour
     private float openY = 0f, closeY = 680f;
     IEnumerator openTitleTransition() {
         currentState = "Title";
+
         RectTransform rect = titleCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         while (rect.anchoredPosition.y >= openY) {
             float y = rect.anchoredPosition.y;
