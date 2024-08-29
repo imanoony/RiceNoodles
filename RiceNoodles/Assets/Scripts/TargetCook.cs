@@ -40,13 +40,14 @@ public class TargetCook : MonoBehaviour
         }
         spriteRenderer.sprite = utensilSprites[3];
         status = 0;
+        currentTime = 0f;
     }
     void OnMouseDown() {
         if (!isCooking) { return; }
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragIcon.moveIcon(newPosition.x, newPosition.y);
         dragIcon.changeIcon(dragIconSprite);
-        StopCoroutine(cooking());
+        StopAllCoroutines();
     }
     void OnMouseDrag() {
         if (!isCooking) { return; }
@@ -60,6 +61,7 @@ public class TargetCook : MonoBehaviour
             if (ray.transform.name == target.transform.name) {
                 spriteRenderer.sprite = utensilSprites[0];
                 status = 0;
+                currentTime = 0f;
                 TargetMix targetMix = target.transform.GetComponent<TargetMix>();
                 int num = int.Parse(dragIcon.GetComponent<SpriteRenderer>().sprite.name[4].ToString());
                 targetMix.startMixing(num + 1);
