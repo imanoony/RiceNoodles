@@ -59,19 +59,19 @@ public class TargetCook : MonoBehaviour
         ray = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, 15f);
         if (ray) {
             if (ray.transform.name == target.transform.name) {
+                TargetMix.score += status;
                 spriteRenderer.sprite = utensilSprites[0];
                 status = 0;
                 currentTime = 0f;
                 TargetMix targetMix = target.transform.GetComponent<TargetMix>();
                 int num = int.Parse(dragIcon.GetComponent<SpriteRenderer>().sprite.name[4].ToString());
                 targetMix.startMixing(num + 1);
-                TargetMix.score += status;
+                isCooking = false;
             }
         }
         else {
             StartCoroutine(cooking());
         }
         dragIcon.resetIcon();
-        isCooking = false;
     }
 }

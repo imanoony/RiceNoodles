@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ServeControl : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class ServeControl : MonoBehaviour
     public static List<int> orders;
     void Start() {
         orders = new List<int>(5) { -1, -1, -1, -1, -1 };
+        currentStage = StageManager.CurrentStage;
+        currentTime = 0f;
+        currentOrderSpeed = orderSpeed;
+        newOrder();
     }
     private Dictionary<int, String> dicStr = new Dictionary<int, String>(){
         {0, "기본"}, {1, "숙주"}, {2, "라임"}, {3, "숙주\n라임"},
@@ -21,14 +26,31 @@ public class ServeControl : MonoBehaviour
         {0, 1}, {1, 1}, {2, 1}, {3, 2},
         {4, 1}, {5, 2}, {6, 2}, {7, 3}
     };
-    void Update() { // for test
-        if (Input.GetKeyDown(KeyCode.A)) { newOrder(); }
+    private float currentTime, currentOrderSpeed;
+    private int currentStage;
+    void Update() {
+        if (StageManager.CurrentStage != currentStage) {
+            currentStage = StageManager.CurrentStage;
+            currentTime = 0f;
+            currentOrderSpeed = orderSpeed - orderAccel * (StageManager.CurrentStage - 1);
+            TargetMix.score = 0;
+            resetServe();
+        }
+        if (currentTime >= currentOrderSpeed + UnityEngine.Random.Range(0.0f, 5.0f)) {
+            newOrder();
+            currentTime = 0f;
+        }
+        currentTime += Time.deltaTime;
     }
     public void checkResult() {
         int result = targetMix.lastCheck();
+        Debug.Log("result: " + result);
         for (int i = 0; i < 5; i++) {
             if (orders[i] == result) {
                 receipts[i].closeReceipt();
+                MoneyManager.AddMoney(50 * (TargetMix.score + 1) * (result / 3 + 1));
+                Debug.Log("score: " + TargetMix.score + ", result: " + result + ", Money: " + MoneyManager.CurrentMoney);
+                TargetMix.score = 0;
                 return;
             }
         }
@@ -55,9 +77,6 @@ public class ServeControl : MonoBehaviour
             default:
                 return r;
         }
-    }
-    private float currentOrderSpeed() {
-        return orderSpeed - orderAccel * StageManager.CurrentStage;
     }
     public void resetServe() {
         for (int i = 0; i < 5; i++) orders[i] = -1;

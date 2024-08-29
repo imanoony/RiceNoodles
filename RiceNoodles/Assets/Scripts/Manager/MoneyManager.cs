@@ -28,7 +28,7 @@ public class MoneyManager : MonoBehaviour
     public void Awake(){
         DontDestroyOnLoad(gameObject);
 
-        currentMoney = 10000;
+        currentMoney = 0;
     }
 
     public static void AddMoney(int money){

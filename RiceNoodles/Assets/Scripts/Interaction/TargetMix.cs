@@ -17,7 +17,9 @@ public class TargetMix : MonoBehaviour
     public int lastCheck() {
         if (!defaultCheck()) result = -1;
         else { result += 1; }
-        return result;
+        int tmp = result;
+        result = -1;
+        return tmp;
     }
     private bool defaultCheck() {
         return gameObject.transform.GetChild(1).gameObject.activeSelf && 

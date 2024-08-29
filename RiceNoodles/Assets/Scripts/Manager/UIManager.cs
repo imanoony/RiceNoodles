@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
                 SettingsCanvas.gameObject.SetActive(false);
                 TimeCanvas.gameObject.SetActive(true);
 
-                Debug.Log(TimeManager.CurrentHour);
+                //Debug.Log(TimeManager.CurrentHour);
                 clockImage.sprite = ClockSprites[TimeManager.CurrentHour-10];
                 break;
             case "TodayResult":
