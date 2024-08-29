@@ -41,32 +41,36 @@ public class EnchantManager : MonoBehaviour
 
 
     private static Dictionary<int, int> enchantChance = new Dictionary<int, int>(){
-        {1, 100},
-        {2, 80},
-        {3, 60},
-        {4, 40},
+        {1, 80},
+        {2, 60},
+        {3, 40},
+        {4, 30},
         {5, 20},
         {6, 10}
     };
     
     private static Dictionary<string, int> enchantCost = new Dictionary<string, int>(){
-        {"Noodle", 100},
-        {"Gravy", 80},
-        {"Beef", 60},
-        {"Sukju", 40},
-        {"Lime", 20},
-        {"Gosu", 10}
+        {"Noodle", 150},
+        {"Gravy", 180},
+        {"Beef", 200},
+        {"Sukju", 70},
+        {"Lime", 80},
+        {"Gosu", 90}
     };
 
+    private static List<int> sukjuUsed = new List<int>(){0, 1, 0, 1, 0, 1, 0, 1};
+    private static List<int> limeUsed = new List<int>(){0, 0, 1, 1, 0, 0, 1, 1};
+    private static List<int> gosuUsed = new List<int>(){0, 0, 0, 0, 1, 1, 1, 1};
+
     private static Dictionary<string, int> enchantLevel;
-    public static int calculateEnchant() {
+    public static int calculateEnchant(int receiptType) {
         int result = 0;
         result += EnchantManager.enchantLevel["Noodle"];
         result += EnchantManager.enchantLevel["Gravy"];
         result += EnchantManager.enchantLevel["Beef"];
-        result += EnchantManager.enchantLevel["Sukju"];
-        result += EnchantManager.enchantLevel["Lime"];
-        result += EnchantManager.enchantLevel["Gosu"];
+        result += (int)(EnchantManager.enchantLevel["Sukju"] * 0.6) * sukjuUsed[receiptType];
+        result += (int)(EnchantManager.enchantLevel["Lime"] * 0.6) * limeUsed[receiptType];
+        result += (int)(EnchantManager.enchantLevel["Gosu"] * 0.6) * gosuUsed[receiptType];
         return result;
     }
     public void Awake(){

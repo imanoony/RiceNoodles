@@ -3934,7 +3934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMix: {fileID: 1179051117}
-  orderSpeed: 15
+  orderSpeed: 8
   orderAccel: 1.5
   receipts:
   - {fileID: 1410653753}
