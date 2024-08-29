@@ -29,10 +29,13 @@ public class StageManager : MonoBehaviour
         MoneyManager.ResetToday();
         UpdateAvailableTopping();
     }
+
+    public static bool Reset = false;
     public static void ResetStage(){
         currentStage = 1;
         MoneyManager.ResetMoney();
         MoneyManager.ResetToday();
+        Reset = true;
     }
 
 

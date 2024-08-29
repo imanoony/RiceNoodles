@@ -33,7 +33,8 @@ public class ServeControl : MonoBehaviour
     public DragPlate[] plates;
     void Update() {
         if (UIManager.CurrentState != "InGame") return;
-        if (StageManager.CurrentStage != currentStage) {
+        if (StageManager.CurrentStage != currentStage || StageManager.Reset) {
+            StageManager.Reset = false;
             currentStage = StageManager.CurrentStage;
             currentTime = 0f;
             currentOrderSpeed = orderSpeed - orderAccel * (StageManager.CurrentStage - 1);
