@@ -144,25 +144,31 @@ public class EnchantManager : MonoBehaviour
 
         switch(currentEnchant){
             case "":
-                itemIconImage.sprite = ItemIcons[6];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 0);
                 break;
             case "Noodle":
                 itemIconImage.sprite = ItemIcons[0];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 1);
                 break;
             case "Gravy":
                 itemIconImage.sprite = ItemIcons[1];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 1);
                 break;
             case "Beef":
                 itemIconImage.sprite = ItemIcons[2];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 1);
                 break;
             case "Sukju":
                 itemIconImage.sprite = ItemIcons[3];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 1);
                 break;
             case "Lime":
                 itemIconImage.sprite = ItemIcons[4];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 1);
                 break;
             case "Gosu":
                 itemIconImage.sprite = ItemIcons[5];
+                itemIconImage.color = new Color(itemIconImage.color.r, itemIconImage.color.g, itemIconImage.color.b, 1);
                 break;
             default:
                 break;

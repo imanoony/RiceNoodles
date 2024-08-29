@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI todayResultText;
     private TextMeshProUGUI dayInfoText;
     private TextMeshProUGUI targetText;
+    private TextMeshProUGUI targetMoneyText;
+    private TextMeshProUGUI dayText;
 
     private Button settingButton;
     private Button enchantButton;
@@ -46,6 +48,8 @@ public class UIManager : MonoBehaviour
         todayResultText = todayResultCanvas.transform.Find("Text").GetComponent<TextMeshProUGUI>();
         dayInfoText = InfoCanvas.transform.Find("Day").GetComponent<TextMeshProUGUI>();
         targetText = InfoCanvas.transform.Find("Target/Target Text").GetComponent<TextMeshProUGUI>();
+        targetMoneyText = EnchantCanvas.transform.Find("Target Money").GetComponent<TextMeshProUGUI>();
+        dayText = EnchantCanvas.transform.Find("Day").GetComponent<TextMeshProUGUI>();
 
         settingButton = ButtonCanvas.transform.Find("Settings").GetComponent<Button>();
         enchantButton = ButtonCanvas.transform.Find("Enchant").GetComponent<Button>();
@@ -74,6 +78,8 @@ public class UIManager : MonoBehaviour
 
     private void Update(){
         moneyText.text = MoneyManager.CurrentMoney.ToString() + "$";
+        targetMoneyText.text = MoneyManager.TargetMoney.ToString() + "$";
+        dayText.text = "Day " + StageManager.CurrentStage;
 
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(currentState == "Settings"){

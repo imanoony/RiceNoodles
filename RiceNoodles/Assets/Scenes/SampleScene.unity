@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: EnchantCanvas
       value: 
       objectReference: {fileID: 1575251680}
+    - target: {fileID: 784109846701014321, guid: 15adeac3514f24642942689e66980402, type: 3}
+      propertyPath: ItemIcons.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 833522542182779386, guid: 15adeac3514f24642942689e66980402, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3935,7 +3939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMix: {fileID: 1179051117}
   orderSpeed: 8
-  orderAccel: 1.5
+  orderAccel: 1
   receipts:
   - {fileID: 1410653753}
   - {fileID: 483762473}
@@ -4037,10 +4041,6 @@ PrefabInstance:
     - target: {fileID: 6987773959086856680, guid: aa4f241119ffb804a914efb06095e843, type: 3}
       propertyPath: m_Name
       value: EnchantUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987773959086856680, guid: aa4f241119ffb804a914efb06095e843, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
