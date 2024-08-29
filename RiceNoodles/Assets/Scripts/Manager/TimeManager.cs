@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
         if(UIManager.CurrentState == "InGame"){
             currentTime += Time.deltaTime;
 
-            if(currentTime >= 0.5){
+            if(currentTime >= 10){
                 currentHour++;
                 currentTime = 0;
 

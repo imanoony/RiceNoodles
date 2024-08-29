@@ -17,10 +17,18 @@ public class MoneyManager : MonoBehaviour
     private static int targetMoney;
     public static int TargetMoney => targetMoney;
 
+    public static Dictionary<int, int> TargetMoneyList = new Dictionary<int, int>(){
+        {1, 1000},
+        {2, 2000},
+        {3, 3000},
+        {4, 4000},
+        {5, 5000}
+    };
+
     public void Awake(){
         DontDestroyOnLoad(gameObject);
-        
-        currentMoney = 0;
+
+        currentMoney = 10000;
     }
 
     public static void AddMoney(int money){

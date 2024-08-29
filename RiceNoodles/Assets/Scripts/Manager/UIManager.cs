@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour
     private static string currentState;
     public static string CurrentState => currentState;
 
+    private bool successDay;
+
 
     private void Awake(){
         DontDestroyOnLoad(gameObject);
@@ -124,9 +126,11 @@ public class UIManager : MonoBehaviour
         string TodayResultText = "오늘의 매출\n" + MoneyManager.TodaySales + "$\n\n오늘의 지출\n" + MoneyManager.TodaySpending + "$";
         if(MoneyManager.TargetMoney <= MoneyManager.CurrentMoney){
             TodayResultText += "\n\n성공!";
+            successDay = true;
         }
         else{
             TodayResultText += "\n\n실패...";
+            successDay = false;
         }
         StartCoroutine(ShowTodayResultCoroutine(TodayResultText));
     }
@@ -143,8 +147,13 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
-        StageManager.NextStage();
-        currentState = "InGame";
+        if(successDay){
+            StageManager.NextStage();
+            currentState = "InGame";
+        }
+        else{
+            // 메인 화면으로
+        }
     }
 
 
@@ -157,6 +166,7 @@ public class UIManager : MonoBehaviour
     private void EnchantButtonClick(){
         if(currentState == "InGame"){
             currentState = "Enchant";
+            EnchantManager.InitiateEnchant();
             Time.timeScale = 0f;
         }
     }
