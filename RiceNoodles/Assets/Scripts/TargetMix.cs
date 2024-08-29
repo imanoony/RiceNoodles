@@ -6,7 +6,8 @@ using UnityEngine.SocialPlatforms.Impl;
 public class TargetMix : MonoBehaviour
 {
     public static int score;
-    void Awake() { score = 0; }
+    public static int result;
+    void Awake() { score = 0; result = -1; }
     public void startMixing(int num) {
         gameObject.transform.GetChild(num).gameObject.SetActive(true);
     }
