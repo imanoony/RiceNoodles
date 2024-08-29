@@ -17,7 +17,6 @@ public class ServeControl : MonoBehaviour
         currentStage = StageManager.CurrentStage;
         currentTime = 0f;
         currentOrderSpeed = orderSpeed;
-        newOrder();
         //plates[currentStage - 2].unlockPlate();
         MoneyManager.SetTargetMoney(MoneyManager.TargetMoneyList[currentStage]);
         audio = gameObject.GetComponent<AudioSource>();

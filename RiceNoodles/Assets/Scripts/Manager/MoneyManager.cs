@@ -18,11 +18,11 @@ public class MoneyManager : MonoBehaviour
     public static int TargetMoney => targetMoney;
 
     public static Dictionary<int, int> TargetMoneyList = new Dictionary<int, int>(){
-        {1, 800},
-        {2, 2000},
-        {3, 4000},
-        {4, 6000},
-        {5, 8000}
+        {1, 0},
+        {2, 0},
+        {3, 0},
+        {4, 0},
+        {5, 0}
     };
 
     public void Awake(){
