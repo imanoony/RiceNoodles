@@ -206,4 +206,14 @@ public class EnchantManager : MonoBehaviour
         enchantButtonImage.sprite = EnchantButtonSprites[0];
     }
 
+    public static void ResetEnchantLevel() {
+        enchantLevel = new Dictionary<string, int>(){
+            {"Noodle", 1},
+            {"Gravy", 1},
+            {"Beef", 1},
+            {"Sukju", 1},
+            {"Lime", 1},
+            {"Gosu", 1}
+        };
+    }
 }

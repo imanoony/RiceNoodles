@@ -33,6 +33,7 @@ public class StageManager : MonoBehaviour
         currentStage = 1;
         MoneyManager.ResetMoney();
         MoneyManager.ResetToday();
+        EnchantManager.ResetEnchantLevel();
         Reset = true;
     }
 

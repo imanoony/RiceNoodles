@@ -65,6 +65,8 @@ public class UIManager : MonoBehaviour
 
         targetText.gameObject.SetActive(false);
         dayInfoText.gameObject.SetActive(false);
+
+        firstPlay = true;
     }
 
     private void Start(){
@@ -283,6 +285,8 @@ public class UIManager : MonoBehaviour
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, openY);
         yield break;
     }
+
+    private bool firstPlay;
     IEnumerator closeTitleTransition() {
         titleCanvas.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
         RectTransform rect = titleCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
@@ -294,7 +298,12 @@ public class UIManager : MonoBehaviour
         }
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, closeY);
         
-        ShowOpening();
+        if (firstPlay) ShowOpening();
+        else {
+            currentState = "InGame";
+            ShowInfoUI();
+        }
+        firstPlay = false;
         yield break;
     }
 
