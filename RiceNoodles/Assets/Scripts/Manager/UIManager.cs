@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
         }
 
         if (Input.anyKeyDown) {
-            if (currentState == "Title") {
+            if (currentState == "Title" && !transitioning) {
                 StartCoroutine(closeTitleTransition());
             }
         }
@@ -272,6 +272,7 @@ public class UIManager : MonoBehaviour
     }
     private float openY = 0f, closeY = 680f;
     IEnumerator openTitleTransition() {
+        transitioning = true;
         currentState = "Title";
 
         RectTransform rect = titleCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
@@ -283,11 +284,14 @@ public class UIManager : MonoBehaviour
         }
         titleCanvas.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, openY);
+        transitioning = false;
         yield break;
     }
 
     private bool firstPlay;
+    private bool transitioning = false;
     IEnumerator closeTitleTransition() {
+        transitioning = true;
         titleCanvas.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
         RectTransform rect = titleCanvas.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
         while (rect.anchoredPosition.y <= closeY) {
@@ -303,6 +307,7 @@ public class UIManager : MonoBehaviour
             currentState = "InGame";
             ShowInfoUI();
         }
+        transitioning = false;
         firstPlay = false;
         yield break;
     }
@@ -331,9 +336,7 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        while(!Input.anyKeyDown){
-            yield return null;
-        }
+        yield return new WaitForSecondsRealtime(2f);
 
         storyText.text = "";
         currentState = "InGame";

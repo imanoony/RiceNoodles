@@ -38,6 +38,9 @@ public class ServeControl : MonoBehaviour
     }
     void Update() {
         if (StageManager.CurrentStage != currentStage || StageManager.Reset) {
+            if (StageManager.Reset) {
+                for (int i = 0; i < 3; i++) plates[i].lockPlate();
+            }
             StageManager.Reset = false;
             currentStage = StageManager.CurrentStage;
             currentTime = 0f;

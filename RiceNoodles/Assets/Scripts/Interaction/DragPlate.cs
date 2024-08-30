@@ -19,6 +19,10 @@ public class DragPlate : MonoBehaviour
         unlocked = true;
         gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
     }
+    public void lockPlate() {
+        unlocked = false;
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
+    }
     void OnMouseDown() {
         if (UIManager.CurrentState != "InGame") { return; }
         if (!unlocked) { return; }
