@@ -86,4 +86,5 @@
 *.unity linguist-generated
 
 *.aspx linguist-vendored
+*.shader linguist-vendored
 *.cs linguist-vendored=false
